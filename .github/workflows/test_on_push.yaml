@@ -1,0 +1,22 @@
+# Автотесты запускаются на каждый push в любую ветку (теги не запускают) и на pull request
+name: tests
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install requirements
+        run: pip install -r requirements.txt coverage
+      - name: Run tests
+        run: coverage run -m unittest -v tests.py
+      - name: Tests report
+        run: coverage report -m
