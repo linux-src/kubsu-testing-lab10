@@ -34,6 +34,11 @@ def calc_sum(a: float, b: float):
     return {"result": a + b}
 
 
+@app.get("/multiply")  # http://127.0.0.1:8000/multiply?a=4&b=5
+def multiply(a: float, b: float):
+    return {"result": a + b}
+
+
 @app.get("/notfound", status_code=404)  # http://127.0.0.1:8000/notfound
 def notfound():
     return {"message": "Resource Not Found"}

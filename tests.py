@@ -46,6 +46,10 @@ class AppTests(unittest.TestCase):
         response = client.get("/sum?a=2&b=3.5")
         self.assertEqual(response.json(), {"result": 5.5})
 
+    def test_multiply(self):
+        response = client.get("/multiply?a=4&b=5")
+        self.assertEqual(response.json(), {"result": 20})
+
     def test_notfound(self):
         response = client.get("/notfound")
         self.assertEqual(response.status_code, 404)
